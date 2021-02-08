@@ -138,7 +138,7 @@ PS: please change PATH with yours
 
 ## 🧐 Userful commands
 
-If you modify `Valgrantfile`, you need to reload
+If you modify `Valgrantfile`, you need to reload it
 ```sh
 $ vagrant reload
 ```
