@@ -12,7 +12,6 @@ Vagrant.configure("2") do |config|
     v.cpus = 1
   end
 
-
   config.vm.define "hote" do |subconfig|
     subconfig.vm.box = DEBIAN
     subconfig.vm.hostname = "hote"
@@ -36,7 +35,6 @@ Vagrant.configure("2") do |config|
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
-
   config.vm.define "router1" do |subconfig|
     subconfig.vm.box = DEBIAN
     subconfig.vm.hostname = "router1"
@@ -45,7 +43,6 @@ Vagrant.configure("2") do |config|
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
-
   config.vm.define "dns1" do |subconfig|
     subconfig.vm.box = DEBIAN
     subconfig.vm.hostname = "dns1"
@@ -53,7 +50,6 @@ Vagrant.configure("2") do |config|
     subconfig.vm.network :private_network, ip: "10.0.3.4"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
-
 
   config.vm.define "pfw2" do |subconfig|
     subconfig.vm.box = DEBIAN
@@ -64,7 +60,6 @@ Vagrant.configure("2") do |config|
     subconfig.vm.network :private_network, ip: "10.0.6.1"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
-
 
   config.vm.define "dns2" do |subconfig|
     subconfig.vm.box = DEBIAN
