@@ -28,9 +28,9 @@ Vagrant.configure("2") do |config|
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
-  config.vm.define "http" do |subconfig|
+  config.vm.define "proxyhttp" do |subconfig|
     subconfig.vm.box = DEBIAN
-    subconfig.vm.hostname = "http"
+    subconfig.vm.hostname = "proxyhttp"
     subconfig.vm.network :private_network, ip: "10.0.7.5"
     subconfig.vm.network :private_network, ip: "10.0.3.5"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt update --fix-missing"
@@ -78,12 +78,12 @@ Vagrant.configure("2") do |config|
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
-  config.vm.define "dns2" do |subconfig|
+  config.vm.define "http" do |subconfig|
     subconfig.vm.box = DEBIAN
-    subconfig.vm.hostname = "dns2"
+    subconfig.vm.hostname = "http"
     subconfig.vm.network :private_network, ip: "10.0.6.2"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt update --fix-missing"
-    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt install net-tools bind9 dnsutils -y "
+    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt install apache -y"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
