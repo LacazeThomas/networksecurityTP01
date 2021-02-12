@@ -83,7 +83,7 @@ Vagrant.configure("2") do |config|
     subconfig.vm.hostname = "http"
     subconfig.vm.network :private_network, ip: "10.0.6.2"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt update --fix-missing"
-    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt install apache -y"
+    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt install apache2 -y"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
