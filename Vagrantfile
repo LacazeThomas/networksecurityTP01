@@ -75,7 +75,6 @@ Vagrant.configure("2") do |config|
     subconfig.vm.provision "shell", privileged: true, run: "always", inline: "apt update --fix-missing"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt install net-tools -y"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf"
-    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "eval `route -n | awk '{ if ($8 ==\"eth0\" && $2 != \"0.0.0.0\") print \"route del default gw \" $2; }'`"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
