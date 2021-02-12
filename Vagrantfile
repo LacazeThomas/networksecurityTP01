@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "pfw1" do |subconfig|
     subconfig.vm.box = DEBIAN
     subconfig.vm.hostname = "pfw1"
-    subconfig.vm.network :private_network, ip: "10.0.2.1"
+    subconfig.vm.network :private_network, ip: "10.0.7.1"
     subconfig.vm.network :private_network, ip: "10.0.1.1"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
@@ -31,37 +31,37 @@ Vagrant.configure("2") do |config|
   config.vm.define "http" do |subconfig|
     subconfig.vm.box = DEBIAN
     subconfig.vm.hostname = "http"
-    subconfig.vm.network :private_network, ip: "10.0.2.5"
+    subconfig.vm.network :private_network, ip: "10.0.7.5"
     subconfig.vm.network :private_network, ip: "10.0.3.5"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt update --fix-missing"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt install net-tools -y"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "eval `route -n | awk '{ if ($8 ==\"eth0\" && $2 != \"0.0.0.0\") print \"route del default gw \" $2; }'`"
-    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "route add default gw 10.0.2.1"
+    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "route add default gw 10.0.7.1 eth1"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
   config.vm.define "router1" do |subconfig|
     subconfig.vm.box = DEBIAN
     subconfig.vm.hostname = "router1"
-    subconfig.vm.network :private_network, ip: "10.0.2.3"
+    subconfig.vm.network :private_network, ip: "10.0.7.3"
     subconfig.vm.network :private_network, ip: "10.0.3.3"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "echo \"nameserver 8.8.8.8\" >> /etc/resolv.conf"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt update --fix-missing"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt install net-tools -y"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "eval `route -n | awk '{ if ($8 ==\"eth0\" && $2 != \"0.0.0.0\") print \"route del default gw \" $2; }'` "
-    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "route add default gw 10.0.2.1"
+    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "route add default gw 10.0.7.1 eth1"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
   config.vm.define "dns1" do |subconfig|
     subconfig.vm.box = DEBIAN
     subconfig.vm.hostname = "dns1"
-    subconfig.vm.network :private_network, ip: "10.0.2.4"
+    subconfig.vm.network :private_network, ip: "10.0.7.4"
     subconfig.vm.network :private_network, ip: "10.0.3.4"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt update --fix-missing"
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "apt install net-tools bind9 dnsutils -y "
     subconfig.vm.provision "shell", privileged: true, run: "always",inline: "eval `route -n | awk '{ if ($8 ==\"eth0\" && $2 != \"0.0.0.0\") print \"route del default gw \" $2; }'` "
-    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "route add default gw 10.0.2.1"
+    subconfig.vm.provision "shell", privileged: true, run: "always",inline: "route add default gw 10.0.7.1 eth1"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
