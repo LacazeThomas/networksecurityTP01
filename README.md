@@ -126,13 +126,13 @@ $ vagrant port $VM_NAME
 
 Get the private key file 
 ```sh
-$ ssh vagrant@127.0.0.1 -p 2222 -i C:\Users\Thomas\.vagrant\machines\$VM_NAME\virtualbox\private_key
+$ ssh vagrant@127.0.0.1 -p 2222 -i $YOUR_PATH\networksecurityTP01\.vagrant\machines\$VM_NAME\virtualbox\private_key
 ```
 PS: please change PATH with yours
 
 ## 🧐 Userful commands
 
-If you modify the `Valgrantfile`, you need to reload it
+If you modify the `Valgrantfile`, you need to reload it without delete your vm
 ```sh
 $ vagrant reload
 ```
