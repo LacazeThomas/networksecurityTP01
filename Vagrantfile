@@ -32,6 +32,9 @@ Vagrant.configure("2") do |config|
     subconfig.vm.hostname = "http"
     subconfig.vm.network :private_network, ip: "10.0.2.5"
     subconfig.vm.network :private_network, ip: "10.0.3.5"
+    subconfig.vm.provision "shell", privileged: true,
+      run: "always",
+      inline: "echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
@@ -48,6 +51,9 @@ Vagrant.configure("2") do |config|
     subconfig.vm.hostname = "dns1"
     subconfig.vm.network :private_network, ip: "10.0.2.4"
     subconfig.vm.network :private_network, ip: "10.0.3.4"
+    subconfig.vm.provision "shell", privileged: true,
+      run: "always",
+      inline: "apt install bind9 dnsutils -y"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
@@ -58,6 +64,9 @@ Vagrant.configure("2") do |config|
     subconfig.vm.network :private_network, ip: "10.0.4.1"
     subconfig.vm.network :private_network, ip: "10.0.5.1"
     subconfig.vm.network :private_network, ip: "10.0.6.1"
+    subconfig.vm.provision "shell", privileged: true,
+      run: "always",
+      inline: "echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
@@ -65,6 +74,9 @@ Vagrant.configure("2") do |config|
     subconfig.vm.box = DEBIAN
     subconfig.vm.hostname = "dns2"
     subconfig.vm.network :private_network, ip: "10.0.6.2"
+    subconfig.vm.provision "shell", privileged: true,
+      run: "always",
+      inline: "apt install bind9 dnsutils -y"
     subconfig.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
