@@ -14,6 +14,8 @@ Vagrant script for Networking and Security TP01
 
 [![Stack](images/stack.png)](https://github.com/anuraghazra/github-readme-stats)
 
+<p><u>With this configuration: you will need to change all X.X.X.1 to an other ip</u></p>
+
 ## 🚧 Requirement
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
@@ -132,9 +134,19 @@ PS: please change PATH with yours
 
 ## 🧐 Userful commands
 
-If you modify the `Valgrantfile`, you need to reload it without delete your vm
+If you modify the `Valgrantfile`, you need to reload it without delete your VM
 ```sh
 $ vagrant reload
+```
+
+If you want to stop all VMs
+```sh
+$ vagrant halt
+```
+
+If you want to destroy all VMs
+```sh
+$ vagrant destroy
 ```
 
 ## 🌟 You are all set! You have a problem ? Please open an issue
